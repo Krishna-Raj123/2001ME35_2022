@@ -33,6 +33,40 @@ df["W'=W - W_avg"] = Z
 
 df.to_csv('octant_output.csv')
 df.head()
+df.insert(10, column="Octant", value="")
+
+#using loop
+for i in range(0,x):
+    M= df["U'=U - U_avg"][i]
+    N= df["V'=V - V_avg"][i]
+    O= df["W'=W - W_avg"][i]
+    
+    
+    if M>0 and N>0 and O>0:
+        print(1)
+        df["Octant"][i] = 1
+    elif M>0 and N>0 and O<0:
+        print(-1)
+        df["Octant"][i] =-1
+    elif M<0 and N>0 and O<0:
+        print(-2)
+        df["Octant"][i] =-2
+         elif M<0 and N>0 and O>0:
+        print(2)
+        df["Octant"][i] =2
+    elif M<0 and N<0 and O>0:
+        print(3)
+        df["Octant"][i] =3
+    elif M<0 and N<0 and O<0:
+        print(-3)
+        df["Octant"][i] =-3
+    elif M>0 and N<0 and O>0:
+        print(4)
+        df["Octant"][i] =4
+    elif M>0 and N<0 and O<0:
+        print(-4)
+        df["Octant"][i] =-4
+df.to_csv('octant_output.csv')
 
 from platform import python_version
 ver = python_version()
