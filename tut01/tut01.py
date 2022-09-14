@@ -67,6 +67,19 @@ for i in range(0,x):
         print(-4)
         df["Octant"][i] =-4
 df.to_csv('octant_output.csv')
+df.at[1,''] = 'User Input'
+
+df.at[0,'Octant ID'] = 'Overall Count'
+df.at[0,'1'] = list(df['Octant']).count(1)
+df.at[0,'-1'] = list(df['Octant']).count(-1)
+df.at[0,'2'] = list(df['Octant']).count(2)
+df.at[0,'-2'] = list(df['Octant']).count(-2)
+df.at[0,'3'] = list(df['Octant']).count(3)
+df.at[0,'-3'] = list(df['Octant']).count(-3)
+df.at[0,'4'] = list(df['Octant']).count(4)
+df.at[0,'-4'] = list(df['Octant']).count(-4)
+# print(list(df['Octant']).count(-1))
+df.to_csv('octant_output.csv')
 
 from platform import python_version
 ver = python_version()
