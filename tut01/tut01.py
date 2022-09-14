@@ -22,6 +22,17 @@ df['W Avg']=df['W Avg'].head(1)
 
 df.to_csv('octant_output.csv')
 df.head()
+X = df['U'] - U_avg
+Y = df['V'] - V_avg
+Z = df['W'] - W_avg
+
+#made column for storing X and named the column as U'=U - U_avg,similarily Y for V'=V - V_avg and Z for W'=W - W_avg.
+df["U'=U - U_avg"] = X
+df["V'=V - V_avg"] = Y
+df["W'=W - W_avg"] = Z
+
+df.to_csv('octant_output.csv')
+df.head()
 
 from platform import python_version
 ver = python_version()
