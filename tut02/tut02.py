@@ -94,7 +94,19 @@ for j in range(-4,5):
         else :
             df.at[i+2,j] = list(df['Octant'][i*mod+1:(i+1)*mod]).count(j) 
 df.to_excel('output octant transition identify.xlsx')
-
+numbers = sorted(df['Octant'].unique())
+print(numbers)
+df['C']=df['Octant'].shift(-1)
+groups=df.groupby(['Octant','C'])
+counts = {i[0]:len(i[1]) for i in groups}
+print(counts)
+matrix=pd.DataFrame()
+for x in numbers:
+    matrix[str(x)]=pd.Series([counts.get((x,y),0) for y in numbers], index = numbers)
+print(matrix)
+df1=matrix
+df.append(df1)
+df.to_excel('output octant transition identify.xlsx')
 from platform import python_version
 ver = python_version()
 
