@@ -38,6 +38,62 @@ df["W'=W - W_avg"] = Z
 
 df.to_excel('output octant transition identify.xlsx')
 df.head()
+#here made the column for storing the value of octant
+df.insert(7, column="Octant", value="")
+
+#using loop
+for i in range(0,x):
+    M= df["U'=U - U_avg"][i]
+    N= df["V'=V - V_avg"][i]
+    O= df["W'=W - W_avg"][i]
+    
+    
+    if M>0 and N>0 and O>0:
+        print(1)
+        df["Octant"][i] = 1
+    elif M>0 and N>0 and O<0:
+        print(-1)
+        df["Octant"][i] =-1
+    elif M<0 and N>0 and O>0:
+        print(2)
+        df["Octant"][i] =2
+    elif M<0 and N>0 and O<0:
+        print(-2)
+        df["Octant"][i] =-2
+    elif M<0 and N<0 and O>0:
+        print(3)
+        df["Octant"][i] =3
+    elif M<0 and N<0 and O<0:
+        print(-3)
+        df["Octant"][i] =-3
+    elif M>0 and N<0 and O>0:
+        print(4)
+        df["Octant"][i] =4
+    elif M>0 and N<0 and O<0:
+        print(-4)
+        df["Octant"][i] =-4
+df.to_excel('output octant transition identify.xlsx')
+df.at[1,''] = 'User Input'
+n=30000//mod;
+for k in range(0,n+2):
+    if(k==0):
+        df.at[k,'Octant ID'] = 'Overall Count'
+    elif(k==1):
+        df.at[k,'Octant ID'] =str(mod)
+    elif(k==2):
+        df.at[k,'Octant ID'] = str((k-2)*mod) +"-"+str((k-1)*mod)
+    else:
+        df.at[k,'Octant ID'] = str((k-2)*mod+1) +"-"+str((k-1)*mod)
+for j in range(-4,5):
+    if(j==0):
+        continue
+    df.at[0,j] = list(df['Octant']).count(j)
+    for i in range(0,n):
+        if(i==0):
+            df.at[i+2,j] = list(df['Octant'][i*mod:(i+1)*mod]).count(j) 
+        else :
+            df.at[i+2,j] = list(df['Octant'][i*mod+1:(i+1)*mod]).count(j) 
+df.to_excel('output octant transition identify.xlsx')
 
 from platform import python_version
 ver = python_version()
