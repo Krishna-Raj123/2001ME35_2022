@@ -113,7 +113,7 @@ for i in range(0,n):
     if(i==0):
         df['C']=df['Octant'][i*mod:(i+1)*mod].shift(-1)
     else:
-        df['C']=df['Octant'][i*mod:(i+1)*mod].shift(-1)
+        df['C']=df['Octant'][i*mod-1:(i+1)*mod].shift(-1)
     groups=df.groupby(['Octant','C'])
     counts = {i[0]:len(i[1]) for i in groups}
     matrix=pd.DataFrame()
