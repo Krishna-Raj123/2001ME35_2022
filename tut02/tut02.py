@@ -107,6 +107,23 @@ print(matrix)
 df1=matrix
 df.append(df1)
 df.to_excel('output octant transition identify.xlsx')
+n=30000//mod;
+numbers = sorted(df['Octant'].unique())
+for i in range(0,n):
+    if(i==0):
+        df['C']=df['Octant'][i*mod:(i+1)*mod].shift(-1)
+    else:
+        df['C']=df['Octant'][i*mod:(i+1)*mod].shift(-1)
+    groups=df.groupby(['Octant','C'])
+    counts = {i[0]:len(i[1]) for i in groups}
+    matrix=pd.DataFrame()
+    for x in numbers:
+        matrix[str(x)]=pd.Series([counts.get((x,y),0) for y in numbers], index = numbers)
+    print(matrix)
+    print("     ")
+    df1 = matrix
+    df.append(df1)
+df.to_excel('output octant transition identify.xlsx')
 from platform import python_version
 ver = python_version()
 
