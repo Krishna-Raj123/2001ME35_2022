@@ -89,6 +89,27 @@ df.at[0,'-3'] = list(df['Octant']).count(-3)
 df.at[0,'4'] = list(df['Octant']).count(4)
 df.at[0,'-4'] = list(df['Octant']).count(-4)
 # print(list(df['Octant']).count(-1))
+df.at[1,''] = 'User Input'
+n=30000//mod;
+for k in range(0,n+2):
+    if(k==0):
+        df.at[k,'Octant ID'] = 'Overall Count'
+    elif(k==1):
+        df.at[k,'Octant ID'] =str(mod)
+    elif(k==2):
+        df.at[k,'Octant ID'] = str((k-2)*mod) +"-"+str((k-1)*mod)
+    else:
+        df.at[k,'Octant ID'] = str((k-2)*mod+1) +"-"+str((k-1)*mod)
+for j in range(-4,5):
+    if(j==0):
+        continue
+    df.at[0,j] = list(df['Octant']).count(j)
+    for i in range(0,n):
+        if(i==0):
+            df.at[i+2,j] = list(df['Octant'][i*mod:(i+1)*mod]).count(j) 
+        else :
+            df.at[i+2,j] = list(df['Octant'][i*mod+1:(i+1)*mod]).count(j) 
+df=df.dropna("")
 df.to_csv('octant_output.csv')
 
 from platform import python_version
