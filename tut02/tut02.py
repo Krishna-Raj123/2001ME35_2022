@@ -123,6 +123,7 @@ for i in range(0,n):
     print("     ")
     df1 = matrix
     df.append(df1)
+df=df.drop(['C'], axis=1)
 df.to_excel('output octant transition identify.xlsx')
 from platform import python_version
 ver = python_version()
