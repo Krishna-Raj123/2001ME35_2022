@@ -44,7 +44,7 @@ def octant_longest_subsequence_count():
   df.head()
 #here made the column for storing the value of octant
   df.insert(10, column="Octant", value="")
-
+  df.insert(11,column=" ",value=" ")
 #using loop
   for i in range(0,x):
     m= df["U'=U - U_avg"][i]
