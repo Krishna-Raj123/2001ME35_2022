@@ -1,0 +1,1 @@
+range_value = int(2 + (mod_max_value/mod))

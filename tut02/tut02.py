@@ -84,8 +84,6 @@ def octant_transition_count(mod=5000):
         df.at[k,'Octant ID'] = str((k-2)*mod) +"-"+str((k-1)*mod-1)
   q_list = [1,-1,2,-2,3,-3,4,-4]
   for j in q_list:
-    if(j==0):
-        continue
     df.at[0,j] = list(df['Octant']).count(j)
     for i in range(0,n):
         if(i==0):
