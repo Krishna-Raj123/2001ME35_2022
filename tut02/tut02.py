@@ -37,7 +37,7 @@ def octant_transition_count(mod=5000):
 
   df.head()
 #here made the column for storing the value of octant
-  df.insert(7, column="Octant", value="")
+  df.insert(10, column="Octant", value="")
 
 #using loop
   for i in range(0,x):
@@ -71,7 +71,8 @@ def octant_transition_count(mod=5000):
         print(-4)
         df["Octant"][i] =-4
   df.at[1,''] = 'User Input'
-  n=30000//mod;
+  mod_max_value=30000
+  n=mod_max_value//mod
   for k in range(0,n+2):
     if(k==0):
         df.at[k,'Octant ID'] = 'Overall Count'
@@ -91,8 +92,6 @@ def octant_transition_count(mod=5000):
             df.at[i+2,j] = list(df['Octant'][i*mod:(i+1)*mod]).count(j) 
         else :
             df.at[i+2,j] = list(df['Octant'][i*mod:(i+1)*mod]).count(j) 
-  df.to_excel('output_octant_transition_identify.xlsx')
-  mod_max_value = 30000
   range_value = int(2 + (mod_max_value/mod))
   df.loc[range_value,"Octant ID"] = "Verified"
   sum=0
@@ -126,7 +125,7 @@ def octant_transition_count(mod=5000):
             df.loc[range_value+5+i,k]=df1.iloc[i,l]
   n=30000//mod
   for i in range(0,n):
-    print("The x is {} and Y is {}".format(i*mod,(i+1)*mod))
+    print("The x is {} and Y is {}".format(i*mod,(i+1)*mod-1))
     df.loc[range_value+15+(i*12), "Octant ID"] = str(i*mod)+"-"+str((i+1)*mod-1)
     df.loc[range_value+14+(i*12),"Octant ID"] = "mod Transition Count"
     df.loc[range_value+17+(i*12), ""] = "From"
@@ -147,8 +146,8 @@ def octant_transition_count(mod=5000):
     for t in range(0,8):
         for k,l in zip(q_list,range(0,8)):
             df.loc[(i*12)+25+t,k]=df2.iloc[t,l]
-  
-  df.to_excel('output_octant_transition_identify.xlsx')
+  df=df.drop(['C'],axis =1)
+  df.to_excel('output_octant_transition_identify.xlsx',index=False)
 from platform import python_version
 ver = python_version()
 
