@@ -43,7 +43,7 @@ def octant_longest_subsequence_count():
 
   df.head()
 #here made the column for storing the value of octant
-  df.insert(7, column="Octant", value="")
+  df.insert(10, column="Octant", value="")
 
 #using loop
   for i in range(0,x):
@@ -102,7 +102,7 @@ def octant_longest_subsequence_count():
     df.loc[i,"Longest Subsequence Length"] = mx 
     df.loc[i,'count']= flag 
   df=df.drop(['update'],axis=1)
-  df.to_excel("output_octant_longest_subsequence.xlsx")
+  df.to_excel("output_octant_longest_subsequence.xlsx",index=False)
 from platform import python_version
 ver = python_version()
 if ver == "3.8.10":
