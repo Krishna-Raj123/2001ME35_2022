@@ -1,0 +1,1 @@
+ df.to_excel("octant_output_ranking_excel.xlsx",index=False,header=None)  
