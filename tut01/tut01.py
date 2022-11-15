@@ -100,9 +100,9 @@ def octact_identification(mod=5000):
     df.at[0,j] = list(df['Octant']).count(j)
     for i in range(0,n):
         if(i==0):
-            df.at[i+2,j] = list(df['Octant'][i*mod:(i+1)*mod]).count(j) 
+            df.at[i+2,j] = list(df['Octant'][i*mod:(i+1)*mod-1]).count(j) 
         else :
-            df.at[i+2,j] = list(df['Octant'][i*mod:(i+1)*mod]).count(j) 
+            df.at[i+2,j] = list(df['Octant'][i*mod:(i+1)*mod-1]).count(j) 
  df.loc[range_value,"Octant ID"] = "Verified"
  sum=0
  for i in q_list:
