@@ -1,4 +1,3 @@
-
 from datetime import datetime
 start_time = datetime.now()
 
@@ -16,7 +15,7 @@ def attendance_report():
     list3 = ["15-09-2022","19-09-2022","22-09-2022"]
 
     for i in range(0,len(df2["Roll No"])):
-        cnt,cnt1,cnt2,cnt3,cnt5=0,0,0,0,0
+        cnt,cnt1,cnt2,cnt3,cnt5,ct=0,0,0,0,0,0
         for j in range(0,len(df1["Attendance"])):
             if(df2.loc[i,"Roll No"] in df1.loc[j,"Attendance"]):
                 cnt=cnt+1
@@ -37,7 +36,6 @@ def attendance_report():
                             cnt1=cnt1+1
                          elif(k not in list2 and k not in list3 and "14" not in df1.loc[j,"Timestamp"] and "15.00" not in df1.loc[j,"Timestamp"]):
                             cnt2=cnt2+1
-                            cnt5=cnt5+1
                         ls.append(k)
                     elif(df1.loc[j,"Timestamp"][:10] not in list1):
                         cnt2=cnt2+1
@@ -72,6 +70,10 @@ def attendance_report():
                 df.loc[j,"Absent"]=1
                 cnt4=cnt4+1
         df.loc[0,"Absent"]=cnt4
+        # for j in range(1,len(df["Date"])):
+        #     if(df.iloc[j,4]>=1 or df.iloc)
+        #     df.iloc[j,3]=df.iloc[j,4] +df.iloc[j,5] + df.iloc[j,6]
+        #     print(df.iloc[j,3])
         df.to_excel(r"C:\Users\hp\OneDrive\Documents\New folder\2001ME35_2022\tut06\output\{0}.xlsx".format(df2.loc[i,"Roll No"]), index=False)
     df3= pandas.DataFrame()
     for i in range(0,len(df2["Roll No"])):
