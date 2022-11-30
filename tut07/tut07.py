@@ -95,7 +95,6 @@ def octant_analysis(mod=5000):
                 df.loc[j+2,"Overall Transition Count"] = i     
         for j,i in zip(columns,q_list):
             df.loc[1, j] = i
-
         df['C']=df['Octant'].shift(-1)
         group=df.groupby(['Octant','C'])
         counts = {i[0]:len(i[1]) for i in group}
