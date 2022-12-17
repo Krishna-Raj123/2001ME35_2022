@@ -95,7 +95,7 @@ def get_time_range(x,df,max_val,value,count):
     df.loc[length+1,"count"] = "To"
     for i in range(0,len(maximum_time)):
         df.loc[i+length+2,"longest subsequence length"],df.loc[i+length+2,"count"] = round(minimum_time[i],3),round(maximum_time[i],3)
-                   
+                  
     print("The max_value is {} Minimim time {} and the Maximum time {}".format(max_val,minimum_time,maximum_time))
 mod=st.number_input("Enter mod value")
 mod=int(mod)
@@ -113,7 +113,7 @@ def to_excel(df):
     processed_data = output.getvalue()
     return processed_data
 st.title("hi,my first web app")
-uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+uploaded_files = st.file_uploader("Choose a excel file", accept_multiple_files=True)
 out=st.button("Compute")
 for uploaded_file in uploaded_files:
     bytes_data = uploaded_file.read()
@@ -248,7 +248,7 @@ for uploaded_file in uploaded_files:
       df_xlsx = to_excel(df)
       st.download_button(label='📥 Download Current Result',
                             data=df_xlsx ,
-                            file_name= 'df_test.xlsx')
+                            file_name= str( uploaded_file.name)+"_"+str(mod)+"_{0}.xlsx".format(datetime.now()))
 from platform import python_version
 ver = python_version()
 
